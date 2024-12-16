@@ -1,18 +1,23 @@
 version: v1beta1
 plugins:
+  # Go plugin for generating Go code from Proto files
   - name: go
     out: node/pkg/proto
     path: tools/bin/protoc-gen-go
     opt:
-      - paths=source_relative
+      - paths=source_relative  # Сохраняет структуру путей как в исходных файлах
+
+  # Go gRPC plugin for generating gRPC Go code
   - name: go-grpc
     out: node/pkg/proto
     path: tools/bin/protoc-gen-go-grpc
     opt:
-      - paths=source_relative
+      - paths=source_relative  # Сохраняет структуру путей как в исходных файлах
+
+  # grpc-gateway plugin for generating the reverse proxy for gRPC HTTP API
   - name: grpc-gateway
     out: node/pkg/proto
     path: tools/bin/protoc-gen-grpc-gateway
     opt:
-      - paths=source_relative
-      - generate_unbound_methods=true
+      - paths=source_relative  # Сохраняет структуру путей как в исходных файлах
+      - generate_unbound_methods=true  # Генерация необязательных методов, если они есть в
